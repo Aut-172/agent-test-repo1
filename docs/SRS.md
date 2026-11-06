@@ -168,7 +168,7 @@
 
 ## 14. 发布门禁
 
-1. `mvn verify` 成功。
+1. 专用 `codex/agentic-real-*` 分支和 Pull Request 必须通过 `mvn --batch-mode --no-transfer-progress verify`。
 2. 需求变更同步更新 SRS、架构和测试计划。
 3. 状态机或 SLA 规则变更包含回归测试。
 4. 仓库、日志和测试数据不得包含密码、API Key 或 Git Token。

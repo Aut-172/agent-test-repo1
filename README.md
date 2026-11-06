@@ -27,7 +27,7 @@
 ## 构建
 
 ```bash
-mvn --batch-mode verify
+mvn --batch-mode --no-transfer-progress verify
 ```
 
 ## 分支策略
