@@ -38,6 +38,25 @@ public final class WorkOrder {
         this.status = WorkOrderStatus.OPEN;
     }
 
+    public static WorkOrder restore(String id, String title, String description, String assetId, Priority priority,
+                                    String reportedBy, Instant createdAt, WorkOrderStatus status,
+                                    Instant acknowledgedAt, String acknowledgedBy, Instant startedAt,
+                                    String assignedEngineer, Instant resolvedAt, String resolutionSummary,
+                                    Instant closedAt, Instant cancelledAt, String cancellationReason) {
+        WorkOrder order = new WorkOrder(id, title, description, assetId, priority, reportedBy, createdAt);
+        order.status = Objects.requireNonNull(status, "status is required");
+        order.acknowledgedAt = acknowledgedAt;
+        order.acknowledgedBy = acknowledgedBy;
+        order.startedAt = startedAt;
+        order.assignedEngineer = assignedEngineer;
+        order.resolvedAt = resolvedAt;
+        order.resolutionSummary = resolutionSummary;
+        order.closedAt = closedAt;
+        order.cancelledAt = cancelledAt;
+        order.cancellationReason = cancellationReason;
+        return order;
+    }
+
     public void acknowledge(String actor, Instant occurredAt) {
         requireStatus(WorkOrderStatus.OPEN);
         acknowledgedBy = required(actor, "actor");
