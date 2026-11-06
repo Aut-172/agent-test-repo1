@@ -12,6 +12,20 @@ permissions:
 jobs:
   verify:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_DB: maintenance
+          POSTGRES_USER: maintenance
+          POSTGRES_PASSWORD: maintenance
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U maintenance -d maintenance"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
@@ -21,3 +35,9 @@ jobs:
           cache: maven
       - name: Verify industrial fixture
         run: mvn --batch-mode --no-transfer-progress verify
+      - name: Verify PostgreSQL and Flyway path
+        env:
+          DB_URL: jdbc:postgresql://localhost:5432/maintenance
+          DB_USERNAME: maintenance
+          DB_PASSWORD: maintenance
+        run: bash scripts/postgres-smoke-test.sh

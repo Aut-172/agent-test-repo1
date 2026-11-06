@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/maintenance}
+    username: ${DB_USERNAME:maintenance}
+    password: ${DB_PASSWORD:maintenance}
+  flyway:
+    enabled: true
+
+app:
+  security:
+    tokens:
+      reporter-token: reporter-1|REPORTER
+      coordinator-token: coordinator-1|COORDINATOR
+      engineer-token: engineer-1|ENGINEER
+      supervisor-token: supervisor-1|SUPERVISOR
