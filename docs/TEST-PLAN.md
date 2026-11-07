@@ -70,7 +70,7 @@
 | --- | --- | --- |
 | 静态契约 | 已核对 | `pom.xml` 声明 Java 17 与 JUnit 5；`.github/workflows/agentic-real-test.yml` 对 `codex/agentic-real-*` 分支的 push 和 pull request 触发，使用 `contents: read` 最小权限，并执行唯一验证命令。 |
 | 本地执行 | 已通过 | 实际执行唯一验证命令，退出码为 `0`；Surefire 报告 8 个测试通过，0 个失败、错误或跳过。 |
-| GitHub Actions 远端执行 | 未取得 | 当前尚无可定位到本次任务提交 SHA 的 provider 运行结果；不得从 workflow 静态配置推导远端成功或失败。 |
+| GitHub Actions 远端执行 | 已通过 | GitHub Actions run `42339342991` 对提交 `1a55968efd42202d8698a5d5cf03b6f859218598` 执行完成，结论为 `success`；该结论来自可定位的实际 provider 结果，而非 workflow 静态配置。 |
 
 ## 11. 需求追踪
 
