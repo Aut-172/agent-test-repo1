@@ -64,7 +64,13 @@
 
 ## 10. CI 门禁
 
-每次 push 和 pull request 执行 `mvn --batch-mode --no-transfer-progress verify`。必须编译成功、全部测试通过且不得跳过测试。后续增加格式化、静态分析和依赖漏洞扫描。
+本项目本地与远端唯一有效的验证命令均为 `mvn --batch-mode --no-transfer-progress verify`。必须编译成功、全部测试通过且不得跳过测试。后续增加格式化、静态分析和依赖漏洞扫描。
+
+| 证据类型 | 状态 | 证据 |
+| --- | --- | --- |
+| 静态契约 | 已核对 | `pom.xml` 声明 Java 17 与 JUnit 5；`.github/workflows/agentic-real-test.yml` 对 `codex/agentic-real-*` 分支的 push 和 pull request 触发，使用 `contents: read` 最小权限，并执行唯一验证命令。 |
+| 本地执行 | 已通过 | 实际执行唯一验证命令，退出码为 `0`；Surefire 报告 8 个测试通过，0 个失败、错误或跳过。 |
+| GitHub Actions 远端执行 | 未取得 | 当前尚无可定位到本次任务提交 SHA 的 provider 运行结果；不得从 workflow 静态配置推导远端成功或失败。 |
 
 ## 11. 需求追踪
 
