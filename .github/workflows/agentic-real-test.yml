@@ -21,3 +21,4 @@ jobs:
           cache: maven
       - name: Verify industrial fixture
         run: mvn --batch-mode --no-transfer-progress verify
+# v30 real e2e 20261125210020 task 1
